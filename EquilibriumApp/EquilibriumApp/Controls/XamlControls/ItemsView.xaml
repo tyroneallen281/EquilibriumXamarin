@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ScrollView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="EquilibriumApp.Mobile.Controls.XamlControls.ItemsView" Orientation="Horizontal">
+    <StackLayout x:Name="stackLayout" Orientation="Horizontal" Padding="0" Spacing="6" HorizontalOptions="FillAndExpand" />
+</ScrollView>

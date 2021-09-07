@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EquilibriumApp.Mobile.Controls.XamlControls.LoadingControl">
+
+    <ContentView.Content>
+        <Grid BackgroundColor="{StaticResource SystemBlack}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ActivityIndicator HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="100" WidthRequest="100" Color="{StaticResource SecondaryColor}" IsRunning="True"></ActivityIndicator>
+
+        </Grid>
+    </ContentView.Content>
+
+</ContentView>

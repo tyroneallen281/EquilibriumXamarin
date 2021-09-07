@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="White"
+             xmlns:xamlControls="clr-namespace:EquilibriumApp.Mobile.Controls.XamlControls;assembly=EquilibriumApp.Mobile"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:helpers="clr-namespace:EquilibriumApp.Mobile.Helpers;assembly=EquilibriumApp.Mobile"
+             xmlns:csControls="clr-namespace:EquilibriumApp.Mobile.Controls.CsControls;assembly=EquilibriumApp.Mobile"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             x:Class="EquilibriumApp.Mobile.Views.User.ProfilePage" Title="Profile">
+ 
+    <ContentPage.Content>
+        <Grid >
+            <ScrollView>
+                <StackLayout Margin="10" >
+                    <xamlControls:VectorOrImageControl  ImageUrl="{Binding ProfileUrl}" IsImage="{Binding User.IsImage}" Text="{Binding User.Initials}"  HeightRequest="120" WidthRequest="120" HorizontalOptions="Center" VerticalOptions="Center" ContentColor="{DynamicResource PrimaryColor}">
+                        <xamlControls:VectorOrImageControl.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CameraCommand}"></TapGestureRecognizer>
+                        </xamlControls:VectorOrImageControl.GestureRecognizers>
+                    </xamlControls:VectorOrImageControl>
+                    <Label
+                            Text="Click above to change picture."
+                            FontSize="10">
+                        <Label.IsVisible>
+                            <OnPlatform x:TypeArguments="x:Boolean"
+                                    iOS="false"
+                                    Android="true"/>
+                        </Label.IsVisible>
+                    </Label>
+                    <StackLayout Padding="12">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Spacing="5"
+                                                Grid.Column="0">
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="First Name" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Entry  Placeholder="" x:Name="FirstName" Text="{Binding User.FirstName, Mode=TwoWay}"></Entry>
+                    </StackLayout>
+                    <StackLayout Spacing="5"
+                                                 Grid.Column="1">
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="Last Name" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Entry  Placeholder="" x:Name="LastName" Text="{Binding  User.LastName, Mode=TwoWay}"></Entry>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+            <StackLayout BackgroundColor="#FFF1F2F6">
+                    <Label Margin="6" FontFamily="{StaticResource SectionLabelFontFamily}" FontSize="{StaticResource LabelSectionFontSize}" Text="Contact info"></Label>
+                </StackLayout>
+                <Entry Text="{Binding  User.Email, Mode=TwoWay}" FontFamily="{StaticResource SectionLabelFontFamily}" Placeholder="Email" />
+                
+                <StackLayout Spacing="5">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource SecondaryColor}" Text="Phone Number" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                <StackLayout >
+                    <Grid
+                                            ColumnSpacing="0"
+                                            RowSpacing="0"
+                                            VerticalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="+27"
+                                                Grid.Column="0"
+                                                 Margin="3,6"
+                                                FontFamily="{StaticResource SectionLabelFontFamily}"
+                                                FontSize="{StaticResource LargeSize}"
+                                                FontAttributes="Bold" />
+                        <Entry Grid.Column="1" Placeholder="" x:Name="RegisterPhoneNumber" Text="{Binding User.PhoneNumber, Mode=TwoWay}" Keyboard="Telephone"  MaxLength="9"></Entry>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+                <StackLayout Spacing="5">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource SecondaryColor}" Text="Gender" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker x:Name="GenderPicker"  SelectedIndex="{Binding User.Gender, Mode=TwoWay}">
+                        <Picker.Items>
+                            <x:String>Male</x:String>
+                            <x:String>Female</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                <StackLayout Spacing="5">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource SecondaryColor}" Text="Date Of Birth*" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <DatePicker x:Name="DateOfBirthPicker"
+                                IsEnabled="True"
+                                Date="{Binding User.DateOfBirth, Mode=TwoWay}" />
+                        <Label
+                            Text="Click year on the top to show years list."
+                            FontSize="10">
+                            <Label.IsVisible>
+                                <OnPlatform x:TypeArguments="x:Boolean"
+                                    iOS="false"
+                                    Android="true"/>
+                            </Label.IsVisible>
+                        </Label>
+                    </StackLayout>
+                  
+                    <Button
+     Margin="10"
+             Style="{StaticResource SecondaryActionButtonStyle}"
+
+             BackgroundColor="{DynamicResource PrimaryColor}"
+             VerticalOptions="End"
+             Command="{Binding SaveCommand}"
+             Text="Save Profile"
+             IsVisible="{Binding ShowRegisterButton}" />
+
+                <StackLayout BackgroundColor="#FFFFFFFF">
+                    <Label Margin="5" FontFamily="{StaticResource SectionLabelFontFamily}" FontSize="{StaticResource LabelSectionFontSize}" Text=""></Label>
+                </StackLayout>
+
+                <Button
+     Margin="10"
+             Style="{StaticResource SecondaryActionButtonStyle}"
+
+     BackgroundColor="{DynamicResource SecondaryColor}"
+     VerticalOptions="End"
+     Command="{Binding SgnOutCommand}"
+     Text="Sign Out" />
+        
+                </StackLayout>
+            </ScrollView>
+            <xamlControls:LoadingControl  Grid.RowSpan="1" IsVisible="{Binding IsBusy}" Visibility="{Binding IsBusy}" Text="{Binding LoadingText}" ></xamlControls:LoadingControl>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

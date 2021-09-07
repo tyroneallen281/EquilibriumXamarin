@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<csPages:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:csControls="clr-namespace:EquilibriumApp.Mobile.Controls.CsControls;assembly=EquilibriumApp.Mobile"
+             xmlns:xamlControls="clr-namespace:EquilibriumApp.Mobile.Controls.XamlControls;assembly=EquilibriumApp.Mobile"
+             xmlns:csPages="clr-namespace:EquilibriumApp.Mobile.Views.CSPages;assembly=EquilibriumApp.Mobile"
+                         xmlns:converters="clr-namespace:EquilibriumApp.Mobile.Converters"
+                         x:Class="EquilibriumApp.Mobile.Controls.XamlControls.PayControl">
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <WebView x:Name="PayWebView"  Source="{Binding StartUrl}"></WebView>
+            <xamlControls:LoadingControl Visibility="False" IsVisible="False" x:Name="LoadingControl" />
+        </Grid>
+    </ContentPage.Content>
+</csPages:BaseContentPage>

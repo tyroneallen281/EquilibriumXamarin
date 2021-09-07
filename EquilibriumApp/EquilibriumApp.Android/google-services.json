@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "672655524845",
+    "firebase_url": "https://equilibrium-3e382.firebaseio.com",
+    "project_id": "equilibrium-3e382",
+    "storage_bucket": "equilibrium-3e382.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672655524845:android:97c345206da46a3e3f9de4",
+        "android_client_info": {
+          "package_name": "com.rxitme.equilibriumapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672655524845-n9t5biu0td0r58qvlus2uop0kqflpse0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJkya6rAdrhM7orGcjlL0GWM6hXQeUITA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672655524845-n9t5biu0td0r58qvlus2uop0kqflpse0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:xamlControls="clr-namespace:EquilibriumApp.Mobile.Controls.XamlControls;assembly=EquilibriumApp.Mobile"
+             xmlns:csPages="clr-namespace:EquilibriumApp.Mobile.Views.CSPages;assembly=EquilibriumApp.Mobile"
+             xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="EquilibriumApp.Mobile.Views.Package.PackageListPage"
+             NavigationPage.HasNavigationBar="true"
+             NavigationPage.BackButtonTitle="Back"
+             Title="{Binding PageTitle}">
+
+
+    <Grid  BackgroundColor="LightGray"  VerticalOptions="StartAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0"
+                     BackgroundColor="{StaticResource PrimaryColor}"
+                     Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <forms:CachedImage Grid.Column="0" Source="search.png" WidthRequest="40" VerticalOptions="CenterAndExpand">
+                </forms:CachedImage>
+                <Entry Grid.Column="1" Placeholder="Search" x:Name="Search" Text="{Binding  SearchQuery, Mode=TwoWay}" TextColor="White" ReturnType="Search" PlaceholderColor="White"></Entry>
+             
+                <!--<forms:CachedImage Grid.Column="2" Source="chevron_down_white.png" WidthRequest="40" VerticalOptions="CenterAndExpand">
+                </forms:CachedImage>-->
+            </Grid>
+           
+        </StackLayout>
+        <StackLayout Grid.Row="1">
+            <ListView Grid.Row="0" ItemsSource="{Binding Packages}" HasUnevenRows="True" IsPullToRefreshEnabled="True"  SeparatorColor="{StaticResource Divider}" BackgroundColor="Transparent" CachingStrategy="RecycleElement"  IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}"  VerticalOptions="StartAndExpand">
+                    <ListView.Behaviors>
+                        <!-- The behavior that allows to use a command for the SelectedItem event -->
+                        <behaviorsPack:SelectedItemBehavior Command="{Binding PackageItemSelectedCommand}" />
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid  BackgroundColor="White" Margin="0,5,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Column="0" Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                        <forms:CachedImage  Source="package_box.png" WidthRequest="80" VerticalOptions="CenterAndExpand">
+                                        </forms:CachedImage>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1" Margin="0,12,6,0">
+                                        <Label  Style="{StaticResource ListHeaderLabel}" Text="{Binding Name}" HorizontalOptions="FillAndExpand"></Label>
+                                        <Label FontFamily="{StaticResource SectionLabelFontFamily}"  FontSize="{StaticResource LabelFontSize}" TextColor="DarkGray" FontAttributes="None"  Text="{Binding PackageCountLimitString}" HorizontalOptions="FillAndExpand" ></Label>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="2" Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                         <Label FontFamily="{StaticResource SectionLabelFontFamily}"  FontSize="{StaticResource LabelFontSize}"  TextColor="{StaticResource SecondaryColor}" FontAttributes="Bold" Text="{Binding PriceString}" HorizontalOptions="End"></Label>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label FontFamily="{StaticResource SectionLabelFontFamily}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.RowSpan="2" TextColor="Black" IsVisible="{Binding ShowNoPackages}" Text="There are no packages available."></Label>
+
+
+        </StackLayout>
+        <xamlControls:LoadingControl  Grid.RowSpan="2" IsVisible="{Binding IsBusy}" Visibility="{Binding IsBusy}" Text="{Binding LoadingText}" ></xamlControls:LoadingControl>
+    </Grid>
+</ContentPage>

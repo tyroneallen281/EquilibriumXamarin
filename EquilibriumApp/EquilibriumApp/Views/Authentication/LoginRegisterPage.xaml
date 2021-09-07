@@ -1,0 +1,460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:csControls="clr-namespace:EquilibriumApp.Mobile.Controls.CsControls;assembly=EquilibriumApp.Mobile"
+             xmlns:xamlControls="clr-namespace:EquilibriumApp.Mobile.Controls.XamlControls;assembly=EquilibriumApp.Mobile"
+             xmlns:csPages="clr-namespace:EquilibriumApp.Mobile.Views.CSPages;assembly=EquilibriumApp.Mobile"
+             x:Class="EquilibriumApp.Mobile.Authentication.LoginRegisterPage"
+                         xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                         ios:Page.UseSafeArea="true" Title="Login Or Register">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Spacing="10">
+            <Image Source="logo_white.png">
+            </Image>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="TabTextStyle"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{StaticResource SystemBlack}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="Margin"
+                        Value="24, 0" />
+            </Style>
+
+            <Color x:Key="TabSeparatorColor">#F4F5F5</Color>
+
+            <Style x:Key="TabSeparatorStyle"
+                   TargetType="Label">
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource TabSeparatorColor}" />
+                <Setter Property="HeightRequest"
+                        Value="1" />
+                <Setter Property="VerticalOptions"
+                        Value="End" />
+            </Style>
+
+            <Style x:Key="SelectedTabStyle"
+                   TargetType="Label">
+                <Setter Property="BackgroundColor"
+                        Value="{DynamicResource SecondaryColor}" />
+                <Setter Property="HeightRequest"
+                        Value="2" />
+                <Setter Property="VerticalOptions"
+                        Value="End" />
+                <Setter Property="Margin"
+                        Value="24, 1" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <Grid Margin="0,0,0,0" 
+              BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--<Button
+                                Grid.Row="0"
+                                Style="{StaticResource PrimaryActionButtonStyle}"
+                                BackgroundColor="#FF4e71a8"
+                                VerticalOptions="End"
+                                Image="facebookButton.png"
+                                FontSize="{StaticResource LittleSize}"
+                                Text="LOG IN WITH Facebook"
+                                Command="{Binding LoginWithFacebookCommand}"
+                                HorizontalOptions="FillAndExpand" />-->
+            </Grid>
+            <Grid Grid.Row="1"
+                  BackgroundColor="White"
+                  ColumnSpacing="0"
+                  RowSpacing="0"
+                  VerticalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid
+                    Grid.Column="1"
+                    Grid.Row="0">
+                    <Label
+                        Text="LOG IN"
+                        Style="{StaticResource TabTextStyle}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding SignIn}" Value="true">
+                                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Grid
+                        Style="{StaticResource TabSeparatorStyle}" />
+                    <Grid
+                        IsVisible="{Binding SignIn}"
+                        Style="{StaticResource SelectedTabStyle}" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SignInPageCommand}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+                <Grid
+                    Grid.Column="0"
+                    Grid.Row="0">
+                    <Label
+                        Text="SIGN UP"
+                        Style="{StaticResource TabTextStyle}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding SignUp}" Value="true">
+                                <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <Grid
+                        Style="{StaticResource TabSeparatorStyle}" />
+                    <Grid
+                        IsVisible="{Binding SignUp}"
+                        Style="{StaticResource SelectedTabStyle}" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SignUpPageCommand}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <Grid
+                    x:Name="MyGrid"
+
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    BackgroundColor="White">
+                    <Grid
+                        BackgroundColor="White"
+                        IsVisible="{Binding SignIn}">
+
+                        <StackLayout Padding="24,12">
+                            <Label Text="Log in now" Margin="3,6"
+                                   FontFamily="{StaticResource SectionLabelFontFamily}"
+                                   FontSize="{StaticResource LargeSize}"
+                                   FontAttributes="Bold" />
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <StackLayout Spacing="5"
+                                                     Grid.Row="0">
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="Cell Number" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Grid
+                                            ColumnSpacing="0"
+                                            RowSpacing="0"
+                                            VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="+27"
+                                                Grid.Column="0"
+                                                 Margin="3,6"
+                                                FontFamily="{StaticResource SectionLabelFontFamily}"
+                                                FontSize="{DynamicResource EntryFontSize}"
+                                                TextColor="{StaticResource LabelBlackText}" />
+                                        <Entry Grid.Column="1" Placeholder="" x:Name="TeamCell1" Text="{Binding LoginModel.PhoneNumber, Mode=TwoWay}" Keyboard="Telephone"   MaxLength="9"  Style="{StaticResource PrimaryEntryStyle}"></Entry>
+                                    </Grid>
+                                </StackLayout>
+                                <StackLayout Spacing="5"
+                                                     Grid.Row="1">
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="Password" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Entry Placeholder="" x:Name="LoginPassword" Text="{Binding LoginModel.Password, Mode=TwoWay}" IsPassword="True" Style="{StaticResource PrimaryEntryStyle}" ></Entry>
+                                </StackLayout>
+                            </Grid>
+
+                            <StackLayout  Orientation="Horizontal" HorizontalOptions="CenterAndExpand"
+                                         VerticalOptions="Center">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ForgotPasswordPageCommand}"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <Label HorizontalTextAlignment="Center" Margin="0,0,0,0"
+                                       VerticalTextAlignment="Center"
+                                       FontFamily="{StaticResource SectionLabelFontFamily}"
+                                       FontSize="{StaticResource LittleSize}" FontAttributes="Bold"
+                                       Text="FORGOT PASSWORD?"
+                                       TextColor="{StaticResource SecondaryColor}" />
+                            </StackLayout>
+
+                            <Button
+                                Style="{StaticResource SecondaryActionButtonStyle}"
+                                VerticalOptions="End"
+                                Text="LOG IN"
+                                FontSize="{StaticResource LittleSize}"
+                                Command="{Binding LoginCommand}"
+                                WidthRequest="250"
+                                HorizontalOptions="CenterAndExpand">
+                            </Button>
+                          
+                        </StackLayout>
+                    </Grid>
+                    <Grid
+                        BackgroundColor="White"
+                        IsVisible="{Binding SignUp}">
+                        <ScrollView>
+                            <StackLayout Padding="24,12">
+                                <Label Text="Sign up now"
+                                   Margin="3,6"
+                                   FontFamily="{StaticResource SectionLabelFontFamily}"
+                                   FontSize="{StaticResource LargeSize}"
+                                   FontAttributes="Bold" />
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackLayout Spacing="5"
+                                                     Grid.Row="0">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="First Name*" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Entry Placeholder="" x:Name="RegisterFirstName" Text="{Binding RegisterModel.FirstName, Mode=TwoWay}"  Style="{StaticResource PrimaryEntryStyle}"></Entry>
+                                    </StackLayout>
+
+                                    <StackLayout Spacing="5"
+                                                     Grid.Row="1">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="Last Name*" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Entry Placeholder="" x:Name="RegisterLastName" Text="{Binding RegisterModel.LastName, Mode=TwoWay}"  Style="{StaticResource PrimaryEntryStyle}"></Entry>
+                                    </StackLayout>
+                                    <StackLayout Spacing="5"
+                                                     Grid.Row="2">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="Cell Number*" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Grid
+                                            ColumnSpacing="0"
+                                            RowSpacing="0"
+                                            VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="+27"
+                                                Grid.Column="0"
+                                                 Margin="3,6"
+                                                FontFamily="{StaticResource SectionLabelFontFamily}"
+                                                  FontSize="{DynamicResource EntryFontSize}"
+                                                TextColor="{StaticResource LabelBlackText}" />
+                                            <Entry Grid.Column="1" Placeholder="" x:Name="RegisterPhoneNumber" Text="{Binding RegisterModel.PhoneNumber, Mode=TwoWay}" Keyboard="Telephone"  MaxLength="9" Style="{StaticResource PrimaryEntryStyle}"></Entry>
+                                        </Grid>
+                                    </StackLayout>
+                                    <StackLayout Spacing="5"
+                                                     Grid.Row="3">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="Email Address*" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Entry Placeholder="" x:Name="RegisterEmail" Text="{Binding RegisterModel.Email, Mode=TwoWay}"  Style="{StaticResource PrimaryEntryStyle}"></Entry>
+                                    </StackLayout>
+
+                                    <StackLayout Spacing="5"
+                                                     Grid.Row="4">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="Password*" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Entry Placeholder="" x:Name="RegisterPassword" Text="{Binding RegisterModel.Password, Mode=TwoWay}"  IsPassword="True"  Style="{StaticResource PrimaryEntryStyle}"></Entry>
+                                    </StackLayout>
+                                    <Grid Grid.Row="5"  Padding="0" Margin="6,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="50" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label TextColor="{StaticResource PrimaryColor}"
+                                           VerticalTextAlignment="Start"
+                                           FontSize="8"
+                                           Text="Minimum of 6 characters." />
+                                       
+                                    </Grid>
+                                    <StackLayout Spacing="5"
+                                                 Grid.Row="6">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="Gender*" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Picker x:Name="GenderPicker"  SelectedIndex="{Binding RegisterModel.Gender, Mode=TwoWay}"  Style="{StaticResource PrimaryEntryStyle}">
+                                            <Picker.Items>
+                                                <x:String>Male</x:String>
+                                                <x:String>Female</x:String>
+                                            </Picker.Items>
+                                        </Picker>
+                                    </StackLayout>
+                                    <StackLayout Spacing="5"
+                                                 Grid.Row="7">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="Date Of Birth*" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <DatePicker x:Name="DateOfBirthPicker"
+                                                    Format="D"
+                                                    Date="{Binding RegisterModel.DateOfBirth, Mode=TwoWay}"
+                                                     Style="{StaticResource PrimaryEntryStyle}"/>
+                                        <Label
+                                            Text="Click year on the top to show years list."
+                                            FontSize="10">
+                                            <Label.IsVisible>
+                                                <OnPlatform x:TypeArguments="x:Boolean"
+                                            iOS="false"
+                                            Android="true"/>
+                                                    </Label.IsVisible>
+                                        </Label>
+                                    </StackLayout>
+                                </Grid>
+
+                                <Button Margin="0,12,0,0"
+                                Style="{StaticResource SecondaryActionButtonStyle}"
+                                VerticalOptions="End"
+                                Text="SIGN UP"
+                                FontSize="{StaticResource LittleSize}"
+                                Command="{Binding RegisterCommand}"
+                                WidthRequest="250"
+                                HorizontalOptions="CenterAndExpand" />
+                             
+                            </StackLayout>
+                        </ScrollView>
+                    </Grid>
+                    <Grid
+                        BackgroundColor="White"
+                        IsVisible="{Binding ForgetPassword}">
+
+                        <StackLayout Padding="30" Spacing="15">
+                            <Label Text="Reset your password?" Margin="3,6"
+                                   FontFamily="{StaticResource SectionLabelFontFamily}"
+                                   FontSize="{StaticResource LargeSize}"
+                                   FontAttributes="Bold" />
+                            <Label Text="Enter your cellphone number here and we will send you a password recovery SMS" Margin="3,6"
+                                   FontFamily="{StaticResource SectionLabelFontFamily}"
+                                   FontSize="{StaticResource MediumSize}" />
+                            <StackLayout Spacing="5"
+                                                     Grid.Row="0">
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource PrimaryColor}" Text="Cell Number" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Grid
+                                            ColumnSpacing="0"
+                                            RowSpacing="0"
+                                            VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="+27"
+                                                Grid.Column="0"
+                                                Margin="3,6"
+                                                FontFamily="{StaticResource SectionLabelFontFamily}"
+                                                FontSize="{DynamicResource EntryFontSize}"
+                                                TextColor="{StaticResource LabelBlackText}"/>
+                                    <Entry Grid.Column="1" Placeholder="" x:Name="ForgotPasswordCell" Text="{Binding ForgoPasswordCellNumber, Mode=TwoWay}" Keyboard="Telephone"   MaxLength="9"  Style="{StaticResource PrimaryEntryStyle}"></Entry>
+                                </Grid>
+                            </StackLayout>
+                            <Button Margin="0,24,0,0"
+                                Style="{StaticResource SecondaryActionButtonStyle}"
+                                VerticalOptions="End"
+                                Text="SEND"
+                                FontSize="{StaticResource LittleSize}"
+                                Command="{Binding ForgotPasswordCommand}"
+                                WidthRequest="250"
+                                HorizontalOptions="CenterAndExpand" />
+                            <StackLayout  Orientation="Horizontal" HorizontalOptions="CenterAndExpand"
+
+                                          VerticalOptions="Center">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SignInPageCommand}"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+
+                                <Label HorizontalTextAlignment="Center" Margin="0,0,0,0"
+                                       VerticalTextAlignment="Center"
+                                       FontFamily="{StaticResource SectionLabelFontFamily}"
+                                       FontSize="{StaticResource LittleSize}" FontAttributes="Bold"
+                                       Text="BACK TO SIGN IN"
+                                       TextColor="{StaticResource SecondaryColor}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <xamlControls:LoadingControl Grid.RowSpan="2" HorizontalOptions="FillAndExpand"
+                                         IsVisible="{Binding IsBusy}" Visibility="{Binding IsBusy}"
+                                         Text="{Binding LoadingText}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

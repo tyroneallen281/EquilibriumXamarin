@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="27" android:versionName="1.27" package="com.rxitme.equilibriumapp" android:installLocation="internalOnly">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
+	<application android:label="Equilibrium" android:icon="@drawable/icon" android:usesCleartextTraffic="true">
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBY2KuM33cs5k5WgeQ-Hlo4EoVvZcoBk58" />
+	</application>
+	<uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" />
+	<!-- Default -->
+	<uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+	<uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" />
+	<uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+	<uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+	<!-- HTC -->
+	<uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+	<uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" />
+	<!-- Samsung -->
+	<uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+	<uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
+	<!-- Sony -->
+	<uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+	<uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.LOCATION_HARDWARE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_CONTACTS" />
+	<uses-permission android:name="android.permission.WRITE_CONTACTS" />
+</manifest>

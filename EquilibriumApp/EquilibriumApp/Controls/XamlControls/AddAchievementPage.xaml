@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"  
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             mc:Ignorable="d"
+             x:Class="EquilibriumApp.Controls.XamlControls.AddAchievementPage"  
+             BackgroundColor="Transparent">
+    <StackLayout VerticalOptions="Center"  Padding="20,0" HorizontalOptions="FillAndExpand" >
+        <Frame CornerRadius="10" Padding="0" BackgroundColor="{StaticResource PrimaryColor}" BorderColor="Black">
+            <StackLayout Spacing="10" Padding="10">
+                <forms:CachedImage  Source="achieve.png" WidthRequest="100" VerticalOptions="CenterAndExpand">
+                </forms:CachedImage>
+                <Label Text="Add Achievement" TextColor="{StaticResource LabelWhiteText}" FontSize="20" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+                <StackLayout Spacing="5">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource LabelWhiteText}" Text="Name" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry  Placeholder="" x:Name="Name" Text="{Binding  UserAchievementModel.Name, Mode=TwoWay}" BackgroundColor="White"></Entry>
+                </StackLayout>
+                <StackLayout Spacing="5">
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontSize="{StaticResource LabelFontSize}" FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{DynamicResource LabelWhiteText}" Text="Score" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry  Placeholder="" x:Name="Value" Text="{Binding  UserAchievementModel.Value, Mode=TwoWay}"  BackgroundColor="White"></Entry>
+                </StackLayout>
+                <Button
+                    Margin="10"
+                    Style="{StaticResource InverseActionButtonStyle}"
+				    Command="{Binding AddAchievementCommand}"
+				    Text="Save" />
+
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:xamlControls="clr-namespace:EquilibriumApp.Mobile.Controls.XamlControls;assembly=EquilibriumApp.Mobile"
+             xmlns:csPages="clr-namespace:EquilibriumApp.Mobile.Views.CSPages;assembly=EquilibriumApp.Mobile"
+             x:Class="EquilibriumApp.Mobile.Views.Favourite.FavoritesPage"
+             NavigationPage.HasNavigationBar="false">
+
+    <ContentPage.Resources>
+
+        <ResourceDictionary>
+
+            <Style x:Key="TabTextStyle"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="White" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Center" />
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="Margin"
+                        Value="24, 0" />
+            </Style>
+
+            <Color x:Key="TabSeparatorColor">#103961</Color>
+
+            <Style x:Key="TabSeparatorStyle"
+                   TargetType="Label">
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource PrimaryColor}" />
+                <Setter Property="HeightRequest"
+                        Value="4" />
+                <Setter Property="VerticalOptions"
+                        Value="End" />
+            </Style>
+
+            <Style x:Key="SelectedTabStyle"
+                   TargetType="Label">
+                <Setter Property="BackgroundColor"
+                        Value="White" />
+                <Setter Property="HeightRequest"
+                        Value="4" />
+                <Setter Property="VerticalOptions"
+                        Value="End" />
+                <Setter Property="Margin"
+                        Value="24, 1" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid 
+                  ColumnSpacing="0"
+                  RowSpacing="0"
+                  VerticalOptions="FillAndExpand"
+                  Margin="0"
+                  IsVisible="{Binding LoggedIn}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    BackgroundColor="{StaticResource PrimaryColor}">
+                <Label
+                        Text="Classes"
+                        Style="{StaticResource TabTextStyle}">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding ShowClasses}" Value="true">
+                            <Setter Property="TextColor" Value="White" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Grid
+                        Style="{StaticResource TabSeparatorStyle}" />
+                <Grid
+                        IsVisible="{Binding ShowClasses}"
+                        Style="{StaticResource SelectedTabStyle}" />
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Command="{Binding SetClassesViewCommand}" />
+                </Grid.GestureRecognizers>
+            </Grid>
+            <Grid
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    BackgroundColor="{StaticResource PrimaryColor}">
+                <Label
+                        Text="Facilities"
+                        Style="{StaticResource TabTextStyle}">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding ShowFacility}" Value="true">
+                            <Setter Property="TextColor" Value="White" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+                <Grid
+                        Style="{StaticResource TabSeparatorStyle}" />
+                <Grid
+                        IsVisible="{Binding ShowFacility}"
+                        Style="{StaticResource SelectedTabStyle}" />
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Command="{Binding SetFacilityViewCommand}" />
+                </Grid.GestureRecognizers>
+            </Grid>
+
+            <Grid  BackgroundColor="LightGray"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1">
+                <Grid  IsVisible="{Binding ShowClasses}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <ListView  ItemsSource="{Binding UserFavouriteClasses}" HasUnevenRows="True" IsPullToRefreshEnabled="True"  SeparatorColor="{StaticResource Divider}" BackgroundColor="Transparent" CachingStrategy="RecycleElement"  IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}">
+                        <ListView.Behaviors>
+                            <!-- The behavior that allows to use a command for the SelectedItem event -->
+                            <behaviorsPack:SelectedItemBehavior Command="{Binding ClassItemSelectedCommand}" />
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid  BackgroundColor="White" Margin="0,5,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0" Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                            <Label FontFamily="{StaticResource SectionLabelFontFamily}"  FontSize="16" FontAttributes="Bold" Text="{Binding ClassTimeString}"  HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" TextColor="{StaticResource SecondaryColor}"></Label>
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1" Margin="0,12,6,0">
+                                            <Label FontFamily="{StaticResource SectionLabelFontFamily}"  FontSize="{StaticResource TitleFontSize}" TextColor="{StaticResource SecondaryColor}" FontAttributes="Bold" Text="{Binding ClassName}" HorizontalOptions="FillAndExpand"></Label>
+                                            <Label FontFamily="{StaticResource SectionLabelFontFamily}"  FontSize="{StaticResource LabelFontSize}" TextColor="DarkGray" FontAttributes="None"  Text="{Binding ClassFacilityName}" HorizontalOptions="FillAndExpand"></Label>
+                                            <Label FontFamily="{StaticResource SectionLabelFontFamily}"  FontSize="{StaticResource LabelFontSize}" TextColor="DarkGray" FontAttributes="None"  Text="{Binding ClassDaysDisplay}" HorizontalOptions="FillAndExpand"></Label>
+
+                                        </StackLayout>
+
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Label FontFamily="{StaticResource SectionLabelFontFamily}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.RowSpan="2" TextColor="Black" IsVisible="{Binding ShowNoClasses}" Text="Click the heart icon to favourite."></Label>
+
+                    <xamlControls:LoadingControl  Grid.RowSpan="2" IsVisible="{Binding IsBusy}" Visibility="{Binding IsBusy}" Text="{Binding LoadingText}" ></xamlControls:LoadingControl>
+                </Grid>
+                <Grid  IsVisible="{Binding ShowFacility}">
+                    <ListView ItemsSource="{Binding UserFavouriteFacility}" HasUnevenRows="True" IsPullToRefreshEnabled="True"  SeparatorColor="{StaticResource Divider}" BackgroundColor="Transparent" CachingStrategy="RecycleElement"  IsRefreshing="{Binding IsBusy}" RefreshCommand="{Binding RefreshCommand}">
+
+                        <ListView.Behaviors>
+                            <!-- The behavior that allows to use a command for the SelectedItem event -->
+                            <behaviorsPack:SelectedItemBehavior Command="{Binding FacilityItemSelectedCommand}" />
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid  BackgroundColor="White" Margin="0,5,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0" Margin="5" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                            <forms:CachedImage x:Name="Logo"             
+                                                     Source="{Binding FacilityLogoPath}"
+                                                     CacheType="Disk"
+                                                     LoadingPlaceholder="icon.png" 
+                                                     ErrorPlaceholder="icon.png"
+                                                     DownsampleToViewSize="True"
+                                                     DownsampleHeight="70"
+                                                     HeightRequest="70"
+                                                     VerticalOptions="FillAndExpand"
+                                                     HorizontalOptions="FillAndExpand">
+                                            </forms:CachedImage>
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="1" Margin="0,12,6,0">
+                                            <Label FontFamily="{StaticResource SectionLabelFontFamily}" TextColor="{StaticResource SecondaryColor}" FontSize="{StaticResource TitleFontSize}" FontAttributes="Bold" Text="{Binding FacilityName}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"></Label>
+
+                                        </StackLayout>
+
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Label FontFamily="{StaticResource SectionLabelFontFamily}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.RowSpan="2" TextColor="Black" IsVisible="{Binding ShowNoFacilities}" Text="Click the heart icon to favourite."></Label>
+
+                    <xamlControls:LoadingControl  Grid.RowSpan="2" IsVisible="{Binding IsBusy}" Visibility="{Binding IsBusy}" Text="{Binding LoadingText}" ></xamlControls:LoadingControl>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Button
+                    Margin="10"
+                    Style="{StaticResource PrimaryActionButtonStyle}"
+				    VerticalOptions="Center"
+				    Command="{Binding LoginCommand}"
+				    Text="Login Or Register" 
+                    IsVisible="{Binding LoggedIn, Converter={StaticResource InverseBoolConverter}}"/>
+    </Grid>
+</ContentPage>

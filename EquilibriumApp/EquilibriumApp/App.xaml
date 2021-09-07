@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:converters="clr-namespace:EquilibriumApp.Mobile.Converters"
+             mc:Ignorable="d"
+             x:Class="EquilibriumApp.App">
+    <Application.Resources>
+
+        <Color x:Key="RXDarkBlue">#0d8692</Color>
+        <Color x:Key="RXLightBlue">#103961</Color>
+        <Color x:Key="RXGrey">#103961</Color>
+        <Color x:Key="Gray">#FFe8e8</Color>
+        <Color x:Key="PrimaryColor">#103961</Color>
+        <Color x:Key="SecondaryColor">#0d8692</Color>
+        <Color x:Key="HeaderFontColor">#000000</Color>
+        <Color x:Key="PrimaryFontColor">#FFFFFF</Color>
+        <Color x:Key="SecondaryFontColor">#0d8692</Color>
+        <Color x:Key="LabelWhiteText">#FFFFFF</Color>
+        <Color x:Key="LabelBlackText">#000000</Color>
+        <Color x:Key="LabelSectionText">#000000</Color>
+        <Color x:Key="LightBackground">#FFFFFF</Color>
+        <OnPlatform x:Key="EvenLittleSize"
+                        x:TypeArguments="x:Double"
+                        iOS="8"
+                        Android="9" />
+        <OnPlatform x:Key="EvenEvenLittleSize"
+                        x:TypeArguments="x:Double"
+                        iOS="6"
+                        Android="7" />
+
+        <OnPlatform x:Key="LittleSize"
+                        x:TypeArguments="x:Double"
+                        iOS="11"
+                        Android="12" />
+
+        <OnPlatform x:Key="MidMediumSize"
+                        x:TypeArguments="x:Double"
+                        iOS="14"
+                        Android="14" />
+
+        <OnPlatform x:Key="MediumSize"
+                        x:TypeArguments="x:Double"
+                        iOS="15"
+                        Android="16" />
+
+        <OnPlatform x:Key="LargeSize"
+                        x:TypeArguments="x:Double"
+                        iOS="17"
+                        Android="18" />
+
+        <OnPlatform x:Key="LargerSize"
+                        x:TypeArguments="x:Double"
+                        iOS="18"
+                        Android="20" />
+
+        <OnPlatform x:Key="BigSize"
+                        x:TypeArguments="x:Double"
+                        iOS="20"
+                        Android="24"
+                        WinPhone="24" />
+
+        <OnPlatform x:Key="ExtraBigSize"
+                      x:TypeArguments="x:Double"
+                      iOS="24"
+                      Android="32" />
+
+        <OnPlatform x:Key="HugeSize"
+                        x:TypeArguments="x:Double"
+                        iOS="32"
+                        Android="48" />
+     
+        <OnPlatform x:TypeArguments="x:String" Android="Roboto-Thin" iOS="HelveticaNeue-Light"   x:Key="RobotoFontFamily" />
+        <OnPlatform x:TypeArguments="x:String" Android="Fonts/Ubuntu-L.ttf#Ubuntu Light" iOS="Ubuntu Light" WinPhone="Segoe UI"  x:Key="UbuntuFontFamily" />
+        <OnPlatform x:Key="SystemBlack" x:TypeArguments="Color" iOS="#7C030405" Android="#7C030405" WinPhone="#99030405" />
+        <OnPlatform x:TypeArguments="x:Double" Android="17" iOS="12"  x:Key="LabelSectionFontSize" />
+        <OnPlatform x:TypeArguments="x:Double" Android="26" iOS="24"  x:Key="BigDateFontSize" />
+        <OnPlatform x:TypeArguments="x:Double" Android="24" iOS="22"  x:Key="BigMonthFontSize" />
+        <OnPlatform x:TypeArguments="x:Double" Android="22" iOS="20"  x:Key="DateFontSize" />
+        <OnPlatform x:TypeArguments="x:Double" Android="19" iOS="18"  x:Key="MonthFontSize" />
+        <OnPlatform x:TypeArguments="x:Double" Android="20" iOS="18"  x:Key="TitleFontSize" />
+        <OnPlatform x:TypeArguments="x:Double" Android="15" iOS="14"  x:Key="LabelFontSize" />
+        <OnPlatform x:TypeArguments="x:Double" Android="16" iOS="15"  x:Key="EntryFontSize" />
+        <OnPlatform x:TypeArguments="x:Double" Android="13" iOS="13"  x:Key="CommandFontSize" />
+        <OnPlatform x:TypeArguments="x:Double" Android="25" iOS="17"  x:Key="LabelBigFontSize" />
+        <OnPlatform x:TypeArguments="Thickness" Android="8,16" iOS="0,0,0,16"  x:Key="CardPadding" />
+        <OnPlatform x:TypeArguments="Thickness"  iOS="0,16,0,0"  x:Key="iOSPadding" />
+        <OnPlatform x:TypeArguments="x:Double" Android="16" iOS="0" x:Key="CardSpacing" />
+        <OnPlatform x:TypeArguments="Color" Android="#64808080" iOS="#64808080"  x:Key="Divider" />
+
+        <OnPlatform x:Key="FontAwesome" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Fonts/FontAwesome.ttf#FontAwesome" />
+            <On Platform="iOS" Value="FontAwesome" />
+        </OnPlatform>
+        <OnPlatform x:Key="SectionLabelFontFamily" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Fonts/SourceSansPro-Regular.ttf#Source Sans Pro" />
+            <On Platform="iOS" Value="SourceSansPro-Regular" />
+        </OnPlatform>
+
+        <OnPlatform x:Key="SofiaBlack" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Fonts/SofiaProBlack.otf#SofiaPro-Black" />
+            <On Platform="iOS" Value="Font/SofiaPro-Black" />
+        </OnPlatform>
+        <OnPlatform x:Key="SofiaBold" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Fonts/SofiaProBold.otf#SofiaPro-Bold" />
+            <On Platform="iOS" Value="Font/SofiaPro-Bold" />
+        </OnPlatform>
+        <OnPlatform x:Key="SofiaRegular" x:TypeArguments="x:String">
+            <On Platform="Android" Value="Fonts/SofiaProRegular.otf#SofiaProRegular" />
+            <On Platform="iOS" Value="Font/SofiaProRegular" />
+        </OnPlatform>
+
+        <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light" iOS="HelveticaNeue-Light" WinPhone="Segoe UI"  x:Key="SectionLabelBoldFontFamily" />
+        <OnPlatform x:TypeArguments="x:String" Android="sans-serif-light" iOS="HelveticaNeue" WinPhone="Segoe UI"  x:Key="SectionLabelNormalFamily" />
+
+        <x:Double x:Key="BaseFontSize">14</x:Double>
+        <x:Double x:Key="BaseButtonHeight">44</x:Double>
+        <x:Double x:Key="BaseButtonBorderRadius">22</x:Double>
+    
+        <Style x:Key="BaseButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="{StaticResource BaseFontSize}" />
+            <Setter Property="BorderRadius" Value="{StaticResource BaseButtonBorderRadius}" />
+            <Setter Property="HeightRequest" Value="{StaticResource BaseButtonHeight}" />
+        </Style>
+
+        <Style x:Key="PrimaryActionButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+
+        <Style x:Key="SecondaryActionButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="BackgroundColor" Value="{DynamicResource SecondaryColor}" />
+            <Setter Property="TextColor" Value="{DynamicResource LabelWhiteText}" />
+        </Style>
+
+        <Style x:Key="InverseActionButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
+        </Style>
+        
+        <Style x:Key="TransparentButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="{DynamicResource LabelButtonColor}" />
+        </Style>
+
+        <Style x:Key="PrimaryEntryStyle" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="{DynamicResource LightBackground}" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontSize" Value="{DynamicResource EntryFontSize}" />
+
+        </Style>
+
+        <Style x:Key="ListHeaderLabel" TargetType="Label">
+            <Setter Property="FontFamily" Value="{DynamicResource SectionLabelFontFamily}" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontSize" Value="{DynamicResource TitleFontSize}" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{DynamicResource LabelBlackText}" />
+        </Style>
+       
+        <converters:DateTimeToHourMinuteConverter x:Key="DateTimeToHourMinuteConverter" />
+        <converters:DateTimeToMonthDayTimeConverter x:Key="DateTimeToMonthDayTimeConverter" />
+        <converters:LabelColorConverter x:Key="LabelColorConverter" />
+        <converters:DateTimeToDayOfWeekConverter x:Key="DateTimeToDayOfWeekConverter" />
+        <converters:DateTimeToDayNumberConverter x:Key="DateTimeToDayNumberConverter" />
+        <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+        <converters:BoolToColorConverter x:Key="BoolToColorConverter" />
+        <converters:SectionTitleConverter x:Key="SectionTitleConverter" />
+        <converters:IntEnumConverter x:Key="IntEnumConverter" />
+        <converters:IsActiveToColorConverter x:Key="IsActiveToColorConverter" />
+        <converters:BoolToRequiredTextConverter x:Key="BoolToRequiredTextConverter" />
+        <converters:SelectedDateConverter x:Key="SelectedDateConverter" />
+        <converters:SelectedDateTextColorConverter x:Key="SelectedDateTextColorConverter" />
+        <converters:SelectedCachedImageConverter x:Key="SelectedCachedImageConverter" />
+
+     
+    </Application.Resources>
+</Application>

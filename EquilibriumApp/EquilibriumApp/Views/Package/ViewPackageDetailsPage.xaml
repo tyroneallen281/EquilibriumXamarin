@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:csControls="clr-namespace:EquilibriumApp.Mobile.Controls.CsControls;assembly=EquilibriumApp.Mobile"
+             xmlns:xamlControls="clr-namespace:EquilibriumApp.Mobile.Controls.XamlControls;assembly=EquilibriumApp.Mobile"
+             xmlns:csPages="clr-namespace:EquilibriumApp.Mobile.Views.CSPages;assembly=EquilibriumApp.Mobile"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="EquilibriumApp.Mobile.Views.Package.ViewPackageDetailsPage"
+             NavigationPage.HasNavigationBar="true"
+             NavigationPage.BackButtonTitle="Back"
+             Title="{Binding PageTitle}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ShareCommand}" Icon="share.png" Text="Share"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <Grid BackgroundColor="LightGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ScrollView x:Name="MainScrollView">
+                <StackLayout  Grid.Row="0"  Orientation="Vertical"  VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" >
+                    <StackLayout  Margin="0,5,0,0" Orientation="Vertical"  VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand"  BackgroundColor="White">
+                             <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0" Margin="10">
+                                <Label Text="{Binding Package.Model.Name}" x:Name="PackageName" TextColor="{DynamicResource PrimaryColor}"  FontFamily="{StaticResource SectionLabelBoldFontFamily}" Margin="12,6" FontSize="24"></Label>
+                                </StackLayout>
+                            </Grid>
+                        <Label Margin="10" FontFamily="{StaticResource SectionLabelFontFamily}"  FontSize="14" FontAttributes="Bold"  Text="{Binding Package.Model.PackageCountLimitString}"   HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" TextColor="{DynamicResource LabelBlackText}" ></Label>
+                            <StackLayout  Spacing="6" x:Name="detailsStackLayout">
+                            <Label HorizontalTextAlignment="Start" Margin="12,12,0,0" TextColor="{DynamicResource SecondaryFontColor}"  Text="Details" FontAttributes="Bold"  FontFamily="{StaticResource SectionLabelBoldFontFamily}" FontSize="18"></Label>
+                                <BoxView HeightRequest=".5" Margin="12,0" Color="{DynamicResource SecondaryColor}" ></BoxView>
+                            <csControls:HtmlLabel Margin="12,0" 
+                                                  TextColor="{DynamicResource LabelSectionText}"  
+                                                  Text="{Binding Package.Model.Description}"
+                                                  InputTransparent="False"
+                                                  FontFamily="{StaticResource SectionLabelFontFamily}" 
+                                                  HorizontalTextAlignment="Start" 
+                                                  IsLongCharacter="True"
+                                                  HorizontalOptions="StartAndExpand">
+                                </csControls:HtmlLabel>
+                            </StackLayout>
+                            <StackLayout x:Name="MapStackLayout" Margin="0,0,0,5">
+                            </StackLayout>
+                    </StackLayout>
+                 
+                </StackLayout>
+            </ScrollView>
+            <Button
+                   Grid.Row="1"
+				    Margin="10"
+                    Style="{StaticResource PrimaryActionButtonStyle}"
+				    VerticalOptions="End"
+				    Command="{Binding CallCommand}"
+				    Text="Call to apply" />
+           
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
